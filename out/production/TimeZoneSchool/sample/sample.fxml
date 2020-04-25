@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="301.0" prefWidth="182.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="5.0" layoutY="6.0" prefHeight="33.0" prefWidth="109.0" text="现在时间:">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+        <Label layoutX="5.0" layoutY="79.0" prefHeight="22.0" prefWidth="173.0" text="本节晚自习已经">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+        <Label layoutX="5.0" layoutY="98.0" prefHeight="22.0" prefWidth="173.0" text="逝去的时间:">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+        <Label fx:id="nowTime" layoutX="24.0" layoutY="31.0" prefHeight="52.0" prefWidth="137.0" text="25:25">
+            <font>
+                <Font size="42.0" />
+            </font>
+        </Label>
+        <Label fx:id="endTime" layoutX="24.0" layoutY="114.0" prefHeight="52.0" prefWidth="137.0" text="00:00">
+            <font>
+                <Font size="42.0" />
+            </font>
+        </Label>
+        <Label layoutX="5.0" layoutY="160.0" prefHeight="33.0" prefWidth="109.0" text="老师寄语:">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+        <TextArea layoutX="5.0" layoutY="200.0" prefHeight="89.0" prefWidth="173.0" wrapText="true">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </TextArea>
+      <Button fx:id="sttimest" layoutX="114.0" layoutY="98.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="41.0" text="设置" textOverrun="LEADING_WORD_ELLIPSIS">
+         <font>
+            <Font size="12.0" />
+         </font></Button>
+    </children>
+</Pane>
