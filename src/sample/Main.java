@@ -25,9 +25,10 @@ public class Main extends Application {
 
     static Label nowtime;
     static Label endtime;
-
+    int overHour = 00;
+    int overMin = 00;
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("TimeManager");
         Scene scene = new Scene(root, 182, 301);
@@ -39,13 +40,13 @@ public class Main extends Application {
             }
         });
         primaryStage.show();
-        initView(root,primaryStage);
+        initView(root, primaryStage);
         testJson2();
     }
 
-    private void initView(Parent parent,Stage primaryStage) {
+    private void initView(Parent parent, Stage primaryStage) {
 
-        Button ST = (Button)parent.lookup("#sttimest");
+        Button ST = (Button) parent.lookup("#sttimest");
         ST.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -60,14 +61,11 @@ public class Main extends Application {
             }
         });
 
-        nowtime = (Label)parent.lookup("#nowTime");
-        endtime = (Label)parent.lookup("#endTime");
+        nowtime = (Label) parent.lookup("#nowTime");
+        endtime = (Label) parent.lookup("#endTime");
 
         Thread thread = new Thread(() -> {
-            while (true){
-                Date now = new Date();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
-
+            while (true) {
                 Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
                 int nowHour = c.get(Calendar.HOUR);
                 int nowMinute = c.get(Calendar.MINUTE);
@@ -77,7 +75,7 @@ public class Main extends Application {
                     exc.printStackTrace();
                 }
 
-                if(nowHour < 10) {
+                if (nowHour < 10) {
                     if (nowMinute < 10) {
                         Platform.runLater(() -> nowtime.setText("0" + nowHour + ":0" + nowMinute));
                     } else {
@@ -92,7 +90,7 @@ public class Main extends Application {
                 }
                 try {
                     Thread.sleep(700);
-                    if(nowHour < 10) {
+                    if (nowHour < 10) {
                         if (nowMinute < 10) {
                             Platform.runLater(() -> nowtime.setText("0" + nowHour + " 0" + nowMinute));
                         } else {
@@ -139,11 +137,53 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
+        Date n = new Date();//可以对每个时间域单独修改
+        SimpleDateFormat f = new SimpleDateFormat("HH");
+        SimpleDateFormat fm = new SimpleDateFormat("mm");
+        int nowHour = Integer.parseInt(f.format(n));
+        int nowMinute = Integer.parseInt(fm.format(n));
 
         JSONObject object = JSONObject
                 .parseObject(line);
-        //string
-        String s = object.getString("firstStartTime");
-        System.out.println(s);
+        int SFsm = Integer.parseInt(object.getString("firstStartTimeMin"));
+        int SFem = Integer.parseInt(object.getString("firstEndTimeMin"));
+        int SSsm = Integer.parseInt(object.getString("secondStartTimeMin"));
+        int SSem = Integer.parseInt(object.getString("secondEndTimeMin"));
+        int STsm = Integer.parseInt(object.getString("thirdStartTimeMin"));
+        int STem = Integer.parseInt(object.getString("thirdEndTimeMin"));
+        int SFsh = Integer.parseInt(object.getString("firstStartTimeHour"));
+        int SFeh = Integer.parseInt(object.getString("firstEndTimeHour"));
+        int SSsh = Integer.parseInt(object.getString("secondStartTimeHour"));
+        int SSeh = Integer.parseInt(object.getString("secondEndTimeHour"));
+        int STsh = Integer.parseInt(object.getString("thirdStartTimeHour"));
+        int STeh = Integer.parseInt(object.getString("thirdEndTimeHour"));
+
+
+
+        Thread thread = new Thread(() -> {
+            while (true) {
+                if (SFsh == nowHour || SFeh == nowHour) {
+                    if (SFeh >= nowHour || SFem <= nowMinute) {
+                        // 计算出已经进行多久的晚自习了 分
+                        if (SFsh - nowHour == 0) {
+                            overHour = 00;
+                            overMin = nowMinute - SFsm;
+                        } else {
+                            overHour = SFeh - SFsh;
+                            overMin = nowMinute;
+                        }
+                        Platform.runLater(() -> endtime.setText(FontNumber.FontNumber(overHour) + ":" + FontNumber.FontNumber(overMin)));
+                        try {
+                            Thread.sleep(700);
+                            Platform.runLater(() -> endtime.setText(FontNumber.FontNumber(overHour) + " " + FontNumber.FontNumber(overMin)));
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 }
