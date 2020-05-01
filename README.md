@@ -21,7 +21,7 @@ JavaFX（抛弃了Swing...）+ Json
  - 教师寄语（开发进度：0％）
 
 ### 0.0.2（Alpha）软件截图
-![](https://blogoss.lyqmc.cn/2020/05/01/15882978591259.jpg)
+![](https://blogoss.lyqmc.cn/2020/05/01/15882989760107.jpg)
 
 ## 版本更新
 ### 0.0.1（Alpha）更新
