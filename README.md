@@ -1,11 +1,11 @@
 # 时间管理·时间·励志
 # 时间·励志
 ## 源码
-如果想看看那烂代码
-请到Github哦
-Github：[GitHub上的项目源码](https://github.com/PenSeeYou/TimeZoneSchool)
-如果已在GitHub看到请忽略
-Blog：[PenSeeYou's Blog](https://blog.lyqmc.cn)
+如果想看看那烂代码 
+请到Github哦 
+Github：[GitHub上的项目源码](https://github.com/PenSeeYou/TimeZoneSchool) 
+如果已在GitHub看到请忽略 
+Blog：[PenSeeYou's Blog](https://blog.lyqmc.cn) 
 ## 灵感
 被班主任那迷人的骚操作给迷惑了，于是我自己的灵感突发，于是就搞了个这个玩意
 
