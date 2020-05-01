@@ -1,11 +1,12 @@
 # 时间管理·时间·励志
 # 时间·励志
 ## 源码
-如果想看看那烂代码 
-请到Github哦 
-Github：[GitHub上的项目源码](https://github.com/PenSeeYou/TimeZoneSchool) 
-如果已在GitHub看到请忽略 
-Blog：[PenSeeYou's Blog](https://blog.lyqmc.cn) 
+如果想看看那烂代码  
+请到Github哦  
+Github：[GitHub上的项目源码](https://github.com/PenSeeYou/TimeZoneSchool)  
+如果已在GitHub看到请忽略  
+Blog：[PenSeeYou's Blog](https://blog.lyqmc.cn)  
+
 ## 灵感
 被班主任那迷人的骚操作给迷惑了，于是我自己的灵感突发，于是就搞了个这个玩意
 
@@ -18,10 +19,12 @@ JavaFX（抛弃了Swing...）+ Json
 ### 目前版本可用功能
  - 现在的时间（可以使用）
  - 已经逝去的晚自习时间（已经开发到90％，设置功能开发完毕，使用Json）
- - 教师寄语（开发进度：0％）
+ - 寄语（开发进度：100％）
+  - 寄语制作（进度：0） 
 
 ### 0.0.2（Alpha）软件截图
-![](https://blogoss.lyqmc.cn/2020/05/01/15882989760107.jpg)
+![](https://blogoss.lyqmc.cn/2020/05/01/15882992842148.jpg)
+
 
 ## 版本更新
 ### 0.0.1（Alpha）更新
