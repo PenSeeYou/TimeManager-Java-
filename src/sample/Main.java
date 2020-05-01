@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.application.Platform;
@@ -25,6 +26,7 @@ public class Main extends Application {
 
     static Label nowtime;
     static Label endtime;
+    static TextArea askTC;
     int overHour = 00;
     int overMin = 00;
     @Override
@@ -42,6 +44,7 @@ public class Main extends Application {
         primaryStage.show();
         initView(root, primaryStage);
         testJson2();
+        talkTime();
     }
 
     private void initView(Parent parent, Stage primaryStage) {
@@ -63,6 +66,7 @@ public class Main extends Application {
 
         nowtime = (Label) parent.lookup("#nowTime");
         endtime = (Label) parent.lookup("#endTime");
+        askTC = (TextArea) parent.lookup("#askTC");
 
         Thread thread = new Thread(() -> {
             while (true) {
@@ -182,6 +186,59 @@ public class Main extends Application {
                         }
                     }
                 }
+            }
+        });
+        thread.start();
+    }
+    String[] talkT;
+    public void talkTime() {
+        // 获取Json文件
+        String pathname = "./talk.json"; // 绝对路径或相对路径都可以，这里是绝对路径，写入文件时演示相对路径
+        File filename = new File(pathname); // 要读取以上路径的input。txt文件
+        InputStreamReader reader = null; // 建立一个输入流对象reader
+        try {
+            reader = new InputStreamReader(
+                    new FileInputStream(filename));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
+        String line = "";
+        try {
+            line = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 解析 Json
+        JSONObject jsonObject = JSONObject.parseObject(line);
+        int howNumber = Integer.parseInt(jsonObject.getString("hownumber"));
+
+        // 建立数组，存储数据
+        talkT = new String[howNumber];
+        // 将数据放入数组
+        for (int i = 0; i < howNumber; i++) {
+            int i1 = i+1;
+            talkT[i] = jsonObject.getString( i1 + "t");
+        }
+
+        // 数据进入
+
+        Thread thread = new Thread(() -> {
+            while (true) {
+                try {
+                    for (int i = 0; i < howNumber; i++) {
+                        int i1 = i+1;
+                        talkT[i] = jsonObject.getString( i1 + "t");
+                        int finalI = i;
+                        Platform.runLater(() -> askTC.setText(talkT[finalI]));
+                        Thread.sleep(3000);
+                    }
+                    Platform.runLater(() -> askTC.setText(""));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
         thread.start();
