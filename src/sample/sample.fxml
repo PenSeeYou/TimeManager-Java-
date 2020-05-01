@@ -47,6 +47,6 @@
          <font>
             <Font size="12.0" />
          </font></Button>
-      <Label layoutX="95.0" layoutY="289.0" prefHeight="17.0" prefWidth="79.0" text="版本:0.0.2(a)" />
+      <Label layoutX="87.0" layoutY="289.0" prefHeight="17.0" prefWidth="91.0" text="版本:0.0.2.1(a)" />
     </children>
 </Pane>

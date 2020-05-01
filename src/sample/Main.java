@@ -225,16 +225,16 @@ public class Main extends Application {
         // 数据进入
 
         Thread thread = new Thread(() -> {
+            Platform.runLater(() -> askTC.setText(talkT[2]));
             while (true) {
                 try {
                     for (int i = 0; i < howNumber; i++) {
+                        Thread.sleep(3000);
                         int i1 = i+1;
                         talkT[i] = jsonObject.getString( i1 + "t");
                         int finalI = i;
                         Platform.runLater(() -> askTC.setText(talkT[finalI]));
-                        Thread.sleep(3000);
                     }
-                    Platform.runLater(() -> askTC.setText(""));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
