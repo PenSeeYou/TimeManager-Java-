@@ -33,7 +33,7 @@
                 <Font size="42.0" />
             </font>
         </Label>
-        <Label layoutX="5.0" layoutY="160.0" prefHeight="33.0" prefWidth="109.0" text="老师寄语:">
+        <Label layoutX="5.0" layoutY="160.0" prefHeight="33.0" prefWidth="109.0" text="寄语:">
             <font>
                 <Font size="19.0" />
             </font>
